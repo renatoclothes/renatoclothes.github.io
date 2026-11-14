@@ -108,8 +108,17 @@
   /* social */
   .social { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
   .social a { display: flex; align-items: center; gap: 14px; padding: 12px 2px; border-bottom: 1px solid var(--line); border-radius: 0; }
-  .social .d { width: 44px; height: 44px; }
+  .social .d { position: relative; width: 44px; height: 44px; color: #fff; }
   .social .d svg { width: 21px; height: 21px; fill: currentColor; }
+  /* live brand colours + a soft pulsing ring so they read as active, tappable links */
+  .social .d.fb { background: #1877f2; --ring: rgba(24, 119, 242, 0.5); }
+  .social .d.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); --ring: rgba(214, 36, 159, 0.5); }
+  .social .d::after { content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+    animation: ring 2.8s ease-out 1.6s infinite; }
+  .social .d.ig::after { animation-delay: 2.9s; }
+  @keyframes ring { 0% { box-shadow: 0 0 0 0 var(--ring); } 65%, 100% { box-shadow: 0 0 0 13px rgba(0, 0, 0, 0); } }
+  @media (hover: hover) { .social a:hover .d { transform: scale(1.08); } }
+  .social a:active .d { transform: scale(0.94); }
   .social b { flex: 1; font: 600 1.5rem/1 var(--serif); letter-spacing: 0.005em; }
   .social .nm { flex: 1; min-width: 0; display: grid; gap: 5px; }
   .social .nm b { flex: none; }
@@ -147,7 +156,7 @@
   @keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) {
-    .logo, .tag, .rise, .call::after { animation: none; }
+    .logo, .tag, .rise, .call::after, .social .d::after { animation: none; }
     .is-3d .coin { animation: none; opacity: 1; }
     .is-3d .logo { animation: none; opacity: 0; }
     * { transition: none !important; }
@@ -188,8 +197,8 @@
     </div>
 
     <ul class="social rise" style="--i:3">
-      <li><a href="https://www.facebook.com/share/19rMTwgqAq/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook — Renato"><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-facebook"/></svg></span><b>Renato</b><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a href="https://www.instagram.com/renato_clothes/" target="_blank" rel="noopener" aria-label="Instagram — Renato"><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-instagram"/></svg></span><span class="nm"><b>Renato</b><small>Բաժանորդագրվել</small></span><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a href="https://www.facebook.com/share/19rMTwgqAq/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook — Renato"><span class="d fb"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-facebook"/></svg></span><b>Renato</b><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a href="https://www.instagram.com/renato_clothes/" target="_blank" rel="noopener" aria-label="Instagram — Renato"><span class="d ig"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-instagram"/></svg></span><span class="nm"><b>Renato</b><small>Բաժանորդագրվել</small></span><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
     </ul>
 
     <a class="save rise" style="--i:4" id="save" href="contact.vcf" download="Renato.vcf">
