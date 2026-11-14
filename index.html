@@ -140,8 +140,9 @@
   @keyframes mp { 0% { transform: scale(0.3); opacity: 0.9; } 100% { transform: scale(3.4); opacity: 0; } }
   .osm { position: absolute; right: 8px; bottom: 7px; padding: 3px 7px; border-radius: 7px; border-radius: 7px;
     background: rgba(0, 0, 0, 0.55); color: rgba(255, 255, 255, 0.78); font: 600 0.625rem/1.2 var(--sans); }
-  .dirs { display: grid; gap: 10px; margin-top: 12px; }
-  .dir { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 20px;
+  .dirs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .dirs .alt { grid-column: 1 / -1; }
+  .dir { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 54px; padding: 0 10px; white-space: nowrap;
     border-radius: 999px; background: var(--ink); color: var(--paper); font: 700 0.95rem/1.2 var(--sans); transition: transform 0.25s var(--ease); }
   .dir svg { width: 20px; height: 20px; }
   .dir.alt { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
@@ -257,7 +258,8 @@
         <a class="osm" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>
       </div>
       <div class="dirs">
-        <a class="dir" href="https://www.google.com/maps/dir/?api=1&destination=40.176120,44.451726" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-nav"/></svg>Ուղղություն</a>
+        <a class="dir" href="https://www.google.com/maps/dir/?api=1&destination=40.176120,44.451726" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-nav"/></svg>Google Maps</a>
+        <a class="dir" href="https://yandex.com/maps/?rtext=~40.176120,44.451726&rtt=auto&z=17" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-nav"/></svg>Yandex Maps</a>
         <a class="dir alt" id="apple" href="https://maps.apple.com/?daddr=40.176120,44.451726&dirflg=d" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-nav"/></svg>Apple Maps</a>
       </div>
     </section>
