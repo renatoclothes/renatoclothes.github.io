@@ -1,0 +1,4 @@
+# source files (template, logo original, icon svgs, build script) stay local
+_src/
+__pycache__/
+*.pyc
