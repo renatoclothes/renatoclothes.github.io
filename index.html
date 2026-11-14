@@ -44,16 +44,34 @@
 
   /* big faint monogram, behind everything */
   .wm { position: fixed; right: -9vw; bottom: -17vh; z-index: 0; pointer-events: none; user-select: none;
-    font: 700 min(125vw, 860px)/1 var(--serif); color: rgba(10, 10, 10, 0.04); }
+    font: 700 min(125vw, 860px)/1 var(--serif); color: rgba(10, 10, 10, 0.04);
+    transform: translate(calc(var(--lx, 0) * -22px), calc(var(--ly, 0) * -16px)); }
 
   .card { position: relative; z-index: 1; max-width: 440px; margin: 0 auto; min-height: 100vh; min-height: 100svh;
     display: flex; flex-direction: column; justify-content: center;
     padding: max(26px, env(safe-area-inset-top)) max(22px, env(safe-area-inset-right)) max(26px, env(safe-area-inset-bottom)) max(22px, env(safe-area-inset-left)); }
 
   .hero { display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .logo { display: block; width: min(52vw, 220px); height: auto; aspect-ratio: 1; border-radius: 50%;
+  .hero-logo { position: relative; width: min(52vw, 220px); aspect-ratio: 1; }
+  .logo { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 50%;
     box-shadow: 0 28px 48px -24px rgba(10, 10, 10, 0.6), 0 6px 16px -8px rgba(10, 10, 10, 0.35);
     animation: pop 1.2s var(--ease) both; }
+  /* 3D medallion (js/medallion.js) draws on a canvas 30% larger than the disc so a tilted coin never clips */
+  .coin { position: absolute; left: -15%; top: -15%; width: 130%; height: 130%; opacity: 0; touch-action: pan-y; cursor: grab;
+    filter: drop-shadow(0 26px 20px rgba(10, 10, 10, 0.3)) drop-shadow(0 5px 7px rgba(10, 10, 10, 0.2)); }
+  .coin:active { cursor: grabbing; }
+  .is-3d .coin { animation: coin-in 0.4s ease both; }
+  .is-3d .logo { animation: logo-out 0.4s ease forwards; }
+  @keyframes coin-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes logo-out { to { opacity: 0; } }
+
+  /* menswear feel: soft spotlight + pinstripe fabric that fade out towards the edges; both follow the mouse / phone tilt */
+  body::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(52% 38% at calc(50% + var(--lx, 0) * 9%) calc(23% + var(--ly, 0) * 5%), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 72%); }
+  body::after { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: repeating-linear-gradient(90deg, rgba(10, 10, 10, 0.05) 0 1px, transparent 1px 7px);
+    -webkit-mask-image: radial-gradient(75% 60% at calc(50% + var(--lx, 0) * 6%) 30%, #000 10%, transparent 75%);
+    mask-image: radial-gradient(75% 60% at calc(50% + var(--lx, 0) * 6%) 30%, #000 10%, transparent 75%); }
   .tag { display: flex; align-items: center; gap: 14px; margin: 24px 0 0;
     font: 400 1rem/1 var(--serif); letter-spacing: 0.1em; color: var(--mute);
     animation: fade 1s var(--ease) 0.35s both; }
@@ -65,6 +83,11 @@
   /* call */
   .call { display: flex; align-items: center; gap: 14px; padding: 9px 16px 9px 9px; border-radius: 999px;
     background: var(--ink); color: var(--paper); transition: transform 0.25s var(--ease); }
+  .call { position: relative; overflow: hidden; isolation: isolate; }
+  .call::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; transform: translateX(-130%);
+    background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.22) 50%, transparent 62%);
+    animation: sheen 6.5s ease-in-out 2.4s infinite; }
+  @keyframes sheen { 0%, 62% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
   .call .ic { flex: none; width: 52px; height: 52px; border-radius: 50%; background: var(--paper); color: var(--ink); display: grid; place-items: center; }
   .call .ic svg { width: 22px; height: 22px; }
   .call .t { flex: 1; min-width: 0; display: grid; gap: 3px; }
@@ -115,7 +138,7 @@
   }
 
   @media (max-height: 700px) and (max-width: 440px) {
-    .logo { width: min(44vw, 170px); }
+    .hero-logo { width: min(44vw, 170px); }
     .tag { margin-top: 18px; }
     .actions { gap: 12px; }
   }
@@ -124,7 +147,9 @@
   @keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) {
-    .logo, .tag, .rise { animation: none; }
+    .logo, .tag, .rise, .call::after { animation: none; }
+    .is-3d .coin { animation: none; opacity: 1; }
+    .is-3d .logo { animation: none; opacity: 0; }
     * { transition: none !important; }
   }
 </style>
@@ -145,7 +170,7 @@
 
 <main class="card">
   <header class="hero">
-    <img class="logo" src="assets/logo-640.png" width="640" height="640" alt="Renato" fetchpriority="high">
+    <div class="hero-logo"><img class="logo" src="assets/logo-640.png" width="640" height="640" alt="Renato" fetchpriority="high"></div>
     <p class="tag">Տղամարդկանց հագուստ</p>
   </header>
 
@@ -174,6 +199,7 @@
   </nav>
 </main>
 
+<script type="module" src="js/main.js"></script>
 <script>
   /* Android: open the prefilled "new contact" screen; the intent falls back to contact.vcf if it can't be handled */
   if (/Android/i.test(navigator.userAgent)) {
