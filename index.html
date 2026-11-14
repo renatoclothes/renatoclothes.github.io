@@ -88,6 +88,9 @@
   .social .d { width: 44px; height: 44px; }
   .social .d svg { width: 21px; height: 21px; fill: currentColor; }
   .social b { flex: 1; font: 600 1.5rem/1 var(--serif); letter-spacing: 0.005em; }
+  .social .nm { flex: 1; min-width: 0; display: grid; gap: 5px; }
+  .social .nm b { flex: none; }
+  .social small { font: 600 0.75rem/1 var(--sans); letter-spacing: 0.04em; color: var(--mute); }
   .social .ar { color: var(--mute); transition: transform 0.4s var(--ease), color 0.3s; }
   .social a:active { background: rgba(10, 10, 10, 0.05); }
 
@@ -103,6 +106,12 @@
     .msg:hover .d { transform: translateY(-3px); }
     .social a:hover .ar { transform: translate(3px, -3px); color: var(--ink); }
     .save:hover { background: var(--ink); color: var(--paper); }
+  }
+
+  .tag { white-space: nowrap; }
+  @media (max-width: 350px) {
+    .tag { gap: 10px; font-size: 0.9rem; letter-spacing: 0.04em; }
+    .tag::before, .tag::after { width: 16px; }
   }
 
   @media (max-height: 700px) and (max-width: 440px) {
@@ -155,7 +164,7 @@
 
     <ul class="social rise" style="--i:3">
       <li><a href="https://www.facebook.com/share/19rMTwgqAq/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook — Renato"><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-facebook"/></svg></span><b>Renato</b><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
-      <li><a href="https://www.instagram.com/renato_clothes/" target="_blank" rel="noopener" aria-label="Instagram — Renato"><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-instagram"/></svg></span><b>Renato</b><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      <li><a href="https://www.instagram.com/renato_clothes/" target="_blank" rel="noopener" aria-label="Instagram — Renato"><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-instagram"/></svg></span><span class="nm"><b>Renato</b><small>Բաժանորդագրվել</small></span><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
     </ul>
 
     <a class="save rise" style="--i:4" id="save" href="contact.vcf" download="Renato.vcf">
