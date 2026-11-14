@@ -20,3 +20,7 @@ NFC Tools → Write → Add a record → URL/URI → `https://renatoclothes.gith
 - `js/` — `main.js`, `look.js` (մկնիկ/թեքություն) և `medallion.js` (3D, հավաքված `_src/js/medallion.src.js`-ից)
 - `assets/` — լոգո, favicon, հղման նախադիտման նկար
 - `fonts/` — Playfair Display, Manrope, Noto Serif/Sans Armenian (տեղական, առանց արտաքին կապի)
+
+## Քարտեզ
+«Գտնվելու վայրը» բաժինը՝ սև քարտեզ OpenStreetMap-ի տվյալներից (`_src/make_map.py`), կոորդինատներ 40.176120, 44.451726,
+Renato-ի լոգոյով նշիչ, «Ուղղություն» (Google Maps) և iPhone-ում նաև Apple Maps։ © OpenStreetMap contributors։

@@ -2,3 +2,6 @@
 _src/
 __pycache__/
 *.pyc
+
+# print QR codes (local only)
+qr/
