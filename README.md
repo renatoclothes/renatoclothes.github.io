@@ -22,5 +22,5 @@ NFC Tools → Write → Add a record → URL/URI → `https://renatoclothes.gith
 - `fonts/` — Playfair Display, Manrope, Noto Serif/Sans Armenian (տեղական, առանց արտաքին կապի)
 
 ## Քարտեզ
-«Գտնվելու վայրը» բաժինը՝ սև քարտեզ OpenStreetMap-ի տվյալներից (`_src/make_map.py`), կոորդինատներ 40.175970, 44.452052,
+«Գտնվելու վայրը» բաժինը՝ սև քարտեզ OpenStreetMap-ի տվյալներից (`_src/make_map.py`), կոորդինատներ 40.175919, 44.452015,
 Renato-ի լոգոյով նշիչ, «Ուղղություն» (Google Maps) և iPhone-ում նաև Apple Maps։ © OpenStreetMap contributors։
